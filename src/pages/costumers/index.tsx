@@ -11,6 +11,7 @@ function Costumers() {
     const [costumers, setCostumers] = useState([]);
     const [visiblecostumers, setVisibleCostumers] = useState([]);
     const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
 
     //Functions
     useEffect(() => {
@@ -39,6 +40,8 @@ function Costumers() {
             console.log({err});
             
         })
+
+        setShow(true);
     }
 
     return (
@@ -56,13 +59,30 @@ function Costumers() {
                 />
             </div>
 
-            <div className="list">
-                {
-                    visiblecostumers.map(costumer => (
-                        <CostumerCard key={costumer.id} costumer={costumer}/>
-                    ))
-                }
-            </div>
+            {
+                !show && 
+                <div className="flex align-center justify-center empty-div">
+                    Carregando...
+                </div>
+            }
+
+            {
+                show &&
+                <div className="list">
+                    {
+                        visiblecostumers.map(costumer => (
+                            <CostumerCard key={costumer.id} costumer={costumer}/>
+                        ))
+                    }
+                    {
+                        !visiblecostumers.length &&
+                        <div className="flex align-center justify-center empty-div">
+                            Não foram encontrados resultados
+                        </div>
+                    }
+                </div>
+            }
+
         </PageContent>
     )
 }

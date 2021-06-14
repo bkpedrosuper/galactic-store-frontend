@@ -10,6 +10,7 @@ function Products() {
     const [products, setProducts] = useState([]);
     const [visibleProducts, setVisibleProducts] = useState([]);
     const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
 
     //Functions
     useEffect(() => {
@@ -38,6 +39,8 @@ function Products() {
             console.log({err});
             
         })
+
+        setShow(true);
     }
 
     return (
@@ -52,13 +55,31 @@ function Products() {
                 />
             </div>
 
-            <div className="list">
-                {
-                    visibleProducts.map(product => (
-                        <ProductCard key={product.id} product={product}/>
-                    ))
-                }
-            </div>
+            {
+                !show && 
+                <div className="flex align-center justify-center empty-div">
+                    Carregando...
+                </div>
+            }
+
+            {
+                show &&
+                <div className="list">
+                    {
+                        visibleProducts.map(product => (
+                            <ProductCard key={product.id} product={product}/>
+                        ))
+                    }
+                    {
+                        !visibleProducts.length &&
+                        <div className="flex align-center justify-center empty-div">
+                            Não foram encontrados resultados
+                        </div>
+                    }
+                </div>
+            }
+
+
         </PageContent>
     )
 }

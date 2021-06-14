@@ -56,6 +56,10 @@ export const PageContent = styled.div`
     flex-direction: column;
     margin: 20px 5px;
   }
+  
+  .empty-div {
+    padding: 15px;
+  }
 
   @media screen and (min-width: 728px) {
     .list {

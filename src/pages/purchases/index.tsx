@@ -12,6 +12,7 @@ function Purchases() {
     const [purchases, setPurchases] = useState([]);
     const [visiblePurchases, setVisiblePurchases] = useState([]);
     const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
 
     //Functions
     useEffect(() => {
@@ -40,6 +41,8 @@ function Purchases() {
             console.log({err});
             
         })
+
+        setShow(true);
     }
 
     return (
@@ -58,12 +61,32 @@ function Purchases() {
             </div>
 
             <div className="list">
-                {
-                    visiblePurchases.map(purchase => (
-                        <PurchaseCard key={purchase.id} purchase={purchase}/>
-                    ))
-                }
+                
             </div>
+
+            {
+                !show && 
+                <div className="flex align-center justify-center empty-div">
+                    Carregando...
+                </div>
+            }
+
+            {
+                show &&
+                <div className="list">
+                    {
+                        visiblePurchases.map(purchase => (
+                            <PurchaseCard key={purchase.id} purchase={purchase}/>
+                        ))
+                    }
+                    {
+                        !visiblePurchases.length &&
+                        <div className="flex align-center justify-center empty-div">
+                            Não foram encontrados resultados
+                        </div>
+                    }
+                </div>
+            }
         </PageContent>
     )
 }
