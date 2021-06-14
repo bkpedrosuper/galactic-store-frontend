@@ -31,7 +31,7 @@ export const Card = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 
-    background-color: ${props => props.theme.colors.cardBackground};      
+    background-color: ${props => props.theme.colors.primary};      
     padding: 10px;
     border-radius: 8px;
     border-left: 7px solid ${props => props.theme.colors.secondary};
@@ -59,13 +59,14 @@ export const Card = styled.div`
 
   .card-info {
     grid-area: info;
-
+    color: ${props => props.theme.colors.white};
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
   .buyout {
+    color: ${props => props.theme.colors.white};
     display: flex;
     justify-content: space-between;
     align-items: center;

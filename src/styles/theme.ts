@@ -6,7 +6,7 @@ const theme = {
     black: "#000000",
     primary: '#733695',
     secondary: '#00cd57',
-    cardBackground: "#6f727b0d"
+    cardBackground: "#00cd57"
   }
 }
 
