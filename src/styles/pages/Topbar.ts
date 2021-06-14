@@ -28,6 +28,10 @@ const Topbar = styled.div`
     margin: 0 10px;
   }
 
+  .topbar-nav__item:hover {
+    cursor: pointer;
+  }
+
   h2 {
     color: ${props => props.theme.colors.white};
   }

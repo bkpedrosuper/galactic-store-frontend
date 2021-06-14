@@ -6,7 +6,16 @@ import Grid from '@material-ui/core/Grid';
 import {Home, Group, AllInbox, Stars, ShoppingCart} from '@material-ui/icons';
 import GalacticStoreLogo from '../assets/project.png'
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+        main: '#ffffff'
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,31 +42,33 @@ function TopbarComponent() {
                     </Grid>
 
                     <Grid item xs={8}>
-                        <nav className="flex topbar-nav">
-                            <Link href="/">
-                                <div className="topbar-nav__item flex align-center">
-                                    <Home className={classes.icon}/>
-                                </div>
-                            </Link>
-                            <Link href="/costumers">
-                                <div className="topbar-nav__item flex align-center">
-                                    <Group className={classes.icon}/>
-                                    <p className="topbar-nav__item__description">Clientes</p>
-                                </div>
-                            </Link>
-                            <Link href="/products">
-                                <div className="topbar-nav__item flex align-center">
-                                    <AllInbox className={classes.icon}/>
-                                    <p className="topbar-nav__item__description">Produtos</p>
-                                </div>
-                            </Link>
-                            <Link href="/purchases">
-                                <div className="topbar-nav__item flex align-center">
-                                    <Stars className={classes.icon}/>
-                                    <p className="topbar-nav__item__description">Pedidos</p>
-                                </div>
-                            </Link>
-                        </nav>
+                        <ThemeProvider theme={theme}>
+                            <nav className="flex topbar-nav">
+                                <Link href="/">
+                                    <div className="topbar-nav__item flex align-center">
+                                        <Home color="primary"/>
+                                    </div>
+                                </Link>
+                                <Link href="/costumers">
+                                    <div className="topbar-nav__item flex align-center">
+                                        <Group color="primary"/>
+                                        <p className="topbar-nav__item__description">Clientes</p>
+                                    </div>
+                                </Link>
+                                <Link href="/products">
+                                    <div className="topbar-nav__item flex align-center">
+                                        <AllInbox color="primary"/>
+                                        <p className="topbar-nav__item__description">Produtos</p>
+                                    </div>
+                                </Link>
+                                <Link href="/purchases">
+                                    <div className="topbar-nav__item flex align-center">
+                                        <Stars color="primary"/>
+                                        <p className="topbar-nav__item__description">Pedidos</p>
+                                    </div>
+                                </Link>
+                            </nav>
+                        </ThemeProvider>
                     </Grid>
                 </Grid>
             </Container>
