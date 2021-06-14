@@ -22,7 +22,6 @@ export const Card = styled.div`
 
   .card {
     width: 470px;
-    height: 130px;
     display: grid;
     grid-template-areas:
       "image info"
@@ -35,6 +34,7 @@ export const Card = styled.div`
     background-color: ${props => props.theme.colors.cardBackground};      
     padding: 10px;
     border-radius: 8px;
+    border-left: 7px solid ${props => props.theme.colors.secondary};
 
     margin: 8px 0;
   }
@@ -51,8 +51,8 @@ export const Card = styled.div`
 
   .card-image {
     grid-area: image;
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
     align-self: center;
     justify-self: center;
   }
