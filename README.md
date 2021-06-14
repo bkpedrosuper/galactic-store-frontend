@@ -17,7 +17,7 @@ Then, with NodeJS installed, you can run
 $ npm run dev
 ```
 
-The app now can be acessed at #### http://localhost:3000
+Then, the app can be acessed at http://localhost:3000
 
 #### Themes used:
 1. Styled Components
