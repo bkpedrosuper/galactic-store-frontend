@@ -35,7 +35,6 @@ function Purchases() {
         .then(response => {
             setPurchases(response.data);
             setVisiblePurchases(response.data);
-            console.log({data: response.data});
         })
         .catch(err => {
             console.log({err});

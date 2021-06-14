@@ -34,7 +34,6 @@ function Costumers() {
         .then(response => {
             setCostumers(response.data);
             setVisibleCostumers(response.data);
-            console.log({data: response.data});
         })
         .catch(err => {
             console.log({err});

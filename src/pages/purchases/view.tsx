@@ -34,8 +34,6 @@ function PurchaseView() {
         await api.get(`/purchases/${purchase_id}`)
             .then(response => {
                 setPurchase(response.data);
-                console.log(response.data);
-
             })
             .catch(err => {
                 console.log({ err });
