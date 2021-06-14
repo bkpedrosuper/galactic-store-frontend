@@ -19,6 +19,10 @@ $ npm run dev
 
 Then, the app can be acessed at http://localhost:3000
 
+## Designed to
+1. Mobile 📱
+2. Desktop 💻
+
 #### Themes used:
 1. Styled Components
 2. Material UI
