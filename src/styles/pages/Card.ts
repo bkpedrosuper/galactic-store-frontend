@@ -53,6 +53,8 @@ export const Card = styled.div`
     grid-area: image;
     height: 80px;
     width: 80px;
+    align-self: center;
+    justify-self: center;
   }
 
   .card-info {
