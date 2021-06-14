@@ -5,7 +5,7 @@ const baseURL = process.env.NODE_ENV === 'development'
                 : "https://galactic-store.herokuapp.com"
 
 const api = axios.create({
-    baseURL: process.env.NODE_ENV,
+    baseURL: baseURL,
 });
 
 export default api; 
