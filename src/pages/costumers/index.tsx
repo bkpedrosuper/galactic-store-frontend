@@ -70,12 +70,10 @@ function Costumers() {
             {
                 show &&
                 <div className="list">
+                    aa
                     {
                         visiblecostumers.map(costumer => (
-                            <Link key={costumer.id} href={{
-                                pathname: '/purchases/add',
-                                query: { costumer_id: costumer.id },
-                            }} passHref>
+                            <Link passHref key={costumer.id} href="/products">
                                 <CostumerCard costumer={costumer}/>
                             </Link>
                         ))
