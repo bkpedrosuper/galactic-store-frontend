@@ -16,7 +16,7 @@ const Home: React.FC = () => {
       <h1>Galactic Store</h1>
       <p>Um gerenciador de emissão de pedidos por Pedro Serpa.</p>
 
-      <Link href="/products">
+      <Link href="/costumers">
         <button className="button">Fazer um pedido</button>
       </Link>
     </Container>

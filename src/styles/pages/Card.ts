@@ -39,6 +39,10 @@ export const Card = styled.div`
     margin: 8px 0;
   }
 
+  .card:hover {
+    cursor: pointer;
+  }
+
   @media screen and (max-width: 728px) {
     .card {
         width: 350px;

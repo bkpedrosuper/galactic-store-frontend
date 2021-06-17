@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 
   display: flex;
@@ -25,7 +25,19 @@ export const Container = styled.div`
   .button {
     padding: 15px;
     border-radius: 8px;
-    background-color: ${props => props.theme.colors.secondary};
+    font-weight: bold;
+    color: ${props => props.theme.colors.black};
+    border-color: ${props => props.theme.colors.secondary};
+    background-image: -webkit-linear-gradient(45deg, ${props => props.theme.colors.secondary} 50%, transparent 50%);
+    background-image: linear-gradient(45deg, ${props => props.theme.colors.secondary} 50%, transparent 50%);
+    background-position: 100%;
+    background-size: 400%;
+    -webkit-transition: background 200ms ease-in-out;
+    transition: background 300ms ease-in-out;
+  }
+  .button:hover {
+    background-position: 0;
+    cursor: pointer;
     color: ${props => props.theme.colors.white};
   }
 
