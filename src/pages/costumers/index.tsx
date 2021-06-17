@@ -4,6 +4,7 @@ import CostumerCard from '../../components/CostumerCard';
 import api from '../../services/api';
 import { PageContent } from '../../styles/pages/PageContent';
 import Head from 'next/head'
+import Link from 'next/link';
 
 
 function Costumers() {
@@ -71,7 +72,7 @@ function Costumers() {
                 <div className="list">
                     {
                         visiblecostumers.map(costumer => (
-                            <CostumerCard key={costumer.id} costumer={costumer}/>
+                            <CostumerCard costumer={costumer}/>
                         ))
                     }
                     {
