@@ -37,6 +37,14 @@ function PurchaseAdd() {
         quantity: string
     }
 
+    const emptyProduct = () : Product => ({
+        imageSrc: '',
+        name: '',
+        price: 0,
+        id: '',
+        multiple: 0,
+    })
+
     const router = useRouter();
     const { costumer_id } = router.query;
 
@@ -48,13 +56,7 @@ function PurchaseAdd() {
 
     const [products, setProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
-    const [currentProduct, setCurrentProduct] = useState((): Product => ({
-        imageSrc: '',
-        name: '',
-        price: 0,
-        id: '',
-        multiple: 0,
-    }))
+    const [currentProduct, setCurrentProduct] = useState(emptyProduct);
     const [addProduct, setAddProduct] = useState(false);
     const [productQuantity, setProductQuantity] = useState([1, 2, 3]);
 
@@ -65,7 +67,7 @@ function PurchaseAdd() {
     }, []);
 
     useEffect(() => {
-    }, [costumer, addProduct]);
+    }, [costumer, addProduct, selectedProducts]);
 
     async function getCostumer() {
         await api.get(`/costumers/${costumer_id}`)
@@ -94,6 +96,19 @@ function PurchaseAdd() {
 
         setProductQuantity(newProductQuantity);
         setCurrentProduct(product)
+    }
+
+    function addPurchasedProduct({quantity, price}) {
+        const newPurchasedProduct = {
+            quantity,
+            price,
+            originalPrice: currentProduct.price,
+            imageSrc: currentProduct.imageSrc,
+        }
+
+        setSelectedProducts([...selectedProducts, newPurchasedProduct]);
+        setAddProduct(false);
+        setCurrentProduct(emptyProduct);
     }
 
     return (
@@ -146,7 +161,7 @@ function PurchaseAdd() {
                         </div>
 
                         {
-                            currentProduct &&
+                            (currentProduct && currentProduct.name) &&
                             <>
                                 <img src={currentProduct.imageSrc} alt={currentProduct.name} className="card-image" />
 
@@ -175,14 +190,10 @@ function PurchaseAdd() {
 
                                         onSubmit={(values) => {
                                             console.log({ submit: values });
-
-                                            setTimeout(() => {
-                                                alert(JSON.stringify(values, null, 2));
-                                                setAddProduct(false);
-                                            }, 500);
+                                            addPurchasedProduct(values);
                                         }}
                                     >
-                                        {({ submitForm, values, isSubmitting, touched, errors }) => (
+                                        {({ submitForm }) => (
                                             <Form>
                                                 <Grid container spacing={1}>
                                                     <Grid item lg={6} xs={6} md={6}>
@@ -192,7 +203,6 @@ function PurchaseAdd() {
                                                             type="Number"
                                                             label="Preço"
                                                             placeholder="Insira o preço"
-                                                            prefix="R$ "
                                                             helperText="Ex: 7.5000,00"
                                                             fullWidth={true}
                                                         />
@@ -246,6 +256,15 @@ function PurchaseAdd() {
                     selectedProducts.map(selectedProduct => (
                         <PurchasedProductCard key={selectedProduct.id} product={selectedProduct} />
                     ))
+                }
+            </div>
+
+            
+
+            <div className="confirm-button">
+                {
+                    !!selectedProducts.length && 
+                    <button onClick={() => alert('salvou')} className="button button_confirm">Salvar</button>
                 }
             </div>
 

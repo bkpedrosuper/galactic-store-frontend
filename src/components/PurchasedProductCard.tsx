@@ -14,7 +14,10 @@ function PurchasedProductCard({product}) {
                     <h3 className="card-info__name">Nome: {product.name}</h3>
                     <h5 className="card-info__price">Preço original: R$ {normalizePrice(product.originalPrice)}</h5>
                     <h5 className="card-info__price">Comprado por: R$ {normalizePrice(product.price)}</h5>
-                    <h5 className="card-info__price">Rentabilidade: {product.profitability.toUpperCase()}</h5>
+                    {
+                        product.profitability && 
+                        <h5 className="card-info__price">Rentabilidade: {product.profitability.toUpperCase()}</h5>
+                    }
                     <h5 className="card-info__price">Quantidade: {product.quantity}</h5>
                     {
                         product.multiple &&
