@@ -23,8 +23,9 @@ Then, the app can be acessed at http://localhost:3000
 1. Mobile 📱
 2. Desktop 💻
 
-#### Themes used:
-1. Styled Components
-2. Material UI
+#### Theme used:
+Styled Components
 
-I haven't decided which one should I use just yet. ¯\_(ツ)_/¯
+### Inputs and Icons:
+Material UI
+
