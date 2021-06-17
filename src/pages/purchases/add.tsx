@@ -1,26 +1,19 @@
+import { MenuItem, TextField as MuiTextField } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import { Field, Form, Formik } from 'formik';
+import {
+    TextField
+} from 'formik-material-ui';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
-import { userInfo } from 'os';
 import React, { useEffect, useState } from 'react';
-import ProductCard from '../../components/ProductCard';
+import { toast } from 'react-toastify';
 import PurchasedProductCard from '../../components/PurchasedProductCard';
 import api from '../../services/api';
+import { NewProduct } from '../../styles/pages/NewProduct';
 import { PageContent } from '../../styles/pages/PageContent';
 import { UserCard } from '../../styles/pages/UserCard';
-import { NewProduct } from '../../styles/pages/NewProduct';
 import { normalizePrice } from '../../utils';
-
-import { MenuItem, TextField as MuiTextField } from '@material-ui/core';
-import {
-    fieldToTextField,
-    TextField,
-    TextFieldProps,
-    Select,
-    Switch,
-  } from 'formik-material-ui';
-import Grid from '@material-ui/core/Grid';
-import { Formik, Form, Field } from 'formik';
-import ProductForm from '../../forms/ProductForm';
 
 function PurchaseAdd() {
 
@@ -104,11 +97,36 @@ function PurchaseAdd() {
             price,
             originalPrice: currentProduct.price,
             imageSrc: currentProduct.imageSrc,
+            id: currentProduct.id,
         }
 
         setSelectedProducts([...selectedProducts, newPurchasedProduct]);
         setAddProduct(false);
         setCurrentProduct(emptyProduct);
+    }
+
+    async function handleSavePurchase() {
+        const newPurchase = {
+            costumer_id,
+            products_selected: selectedProducts.map(product => {
+                const {id,quantity, price} = product;
+                return {
+                    product_id: id,
+                    quantity,
+                    price,
+                }
+            })
+        }
+
+        await api.post('/purchase', newPurchase)
+        .then(res => {
+            toast.success('Pedido emitido com sucesso!');
+            router.push('/purchases');
+        })
+        .catch(err => {
+            toast.error('Ocorreu um erro ao emitir este pedido!');
+            console.log({err});
+        })
     }
 
     return (
@@ -203,7 +221,7 @@ function PurchaseAdd() {
                                                             type="Number"
                                                             label="Preço"
                                                             placeholder="Insira o preço"
-                                                            helperText="Ex: 7.5000,00"
+                                                            helperText="Ex: 75000,00"
                                                             fullWidth={true}
                                                         />
                                                     </Grid>
@@ -264,7 +282,7 @@ function PurchaseAdd() {
             <div className="confirm-button">
                 {
                     !!selectedProducts.length && 
-                    <button onClick={() => alert('salvou')} className="button button_confirm">Salvar</button>
+                    <button onClick={() => handleSavePurchase()} className="button button_confirm">Salvar</button>
                 }
             </div>
 
