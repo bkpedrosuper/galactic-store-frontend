@@ -1,11 +1,17 @@
 import React from 'react';
 import { Card } from '../styles/pages/Card';
 import {AddCircle} from '@material-ui/icons';
+import Link from 'next/link';
 
 function CostumerCard({costumer}) {
 
     return (
         <Card>
+            <Link href={{
+                    pathname: '/purchases/add',
+                    query: { costumer_id: costumer.id },
+                }}
+            >
             <div className="card">
                 <img className="card-image" src={costumer.imageSrc} alt="img" />
                 <div className="card-info">
@@ -17,6 +23,7 @@ function CostumerCard({costumer}) {
                     Clique no card para emitir um pedido com este cliente <AddCircle color="secondary"/>
                 </div>
             </div>
+            </Link>
         </Card>
     )
 }

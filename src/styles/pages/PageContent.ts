@@ -24,13 +24,6 @@ export const PageContent = styled.div`
     margin: 20px 0;
   }
 
-  p {
-    margin: 14px;
-    font-size: 24px;
-    line-height: 32px;
-    color: ${props => props.theme.colors.secondary};
-  }
-
   .button {
     padding: 15px;
     border-radius: 8px;
